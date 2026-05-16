@@ -6,7 +6,7 @@
 /*   By: ttakemur <ttakemur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 14:46:02 by ttakemur          #+#    #+#             */
-/*   Updated: 2026/05/16 16:59:44 by ttakemur         ###   ########.fr       */
+/*   Updated: 2026/05/16 19:18:15 by ttakemur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int	set_option(t_config *config, char *str)
 	return (0);
 }
 
-static int	set_nodes(t_node **head, char *str)
+static int	set_stack(t_stack *stack, char *str)
 {
 	int			num;
 	t_node		*new;
@@ -65,14 +65,14 @@ static int	set_nodes(t_node **head, char *str)
 	new = node_new(num);
 	if (!new)
 		return (ERROR);
-	if (!*head)
-		*head = new;
+	if (!stack->top)
+		stack->top = new;
 	else
-		node_add_prev(*head, new);
+		node_add_prev(stack->top, new);
 	return (0);
 }
 
-static int	parse_one_arg(char *arg, t_node **head, t_config *config)
+static int	parse_one_arg(char *arg, t_stack *stack, t_config *config)
 {
 	char	**tokens;
 	int		i;
@@ -88,7 +88,7 @@ static int	parse_one_arg(char *arg, t_node **head, t_config *config)
 		if (error == 0 && is_option(tokens[i]))
 			error = set_option(config, tokens[i]);
 		else if (error == 0)
-			error = set_nodes(head, tokens[i]);
+			error = set_stack(stack, tokens[i]);
 		free(tokens[i]);
 		i++;
 	}
@@ -96,14 +96,14 @@ static int	parse_one_arg(char *arg, t_node **head, t_config *config)
 	return (error);
 }
 
-int	parse_argv(int argc, char **argv, t_node **head, t_config *config)
+int	parse_argv(int argc, char **argv, t_stack *stack, t_config *config)
 {
 	int	i;
 
 	i = 1;
 	while (i < argc)
 	{
-		if (parse_one_arg(argv[i], head, config) == ERROR)
+		if (parse_one_arg(argv[i], stack, config) == ERROR)
 			return (ERROR);
 		i++;
 	}

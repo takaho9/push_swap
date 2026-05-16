@@ -1,41 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   index_stack.c                                      :+:      :+:    :+:   */
+/*   simple_sort.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttakemur <ttakemur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/16 18:16:01 by ttakemur          #+#    #+#             */
-/*   Updated: 2026/05/16 19:18:55 by ttakemur         ###   ########.fr       */
+/*   Created: 2026/05/16 19:22:36 by ttakemur          #+#    #+#             */
+/*   Updated: 2026/05/16 21:39:23 by ttakemur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	index_stack(t_stack *stack)
+void simple_sort(t_stack *stack_a, t_stack *stack_b)
 {
-	size_t i;
-	size_t index;
-	t_node *start;
-	t_node *cur;
+    size_t i;
 
-	start = stack->top;
-	while (1)
-	{
-		cur = start;
-		index = 0;
-		while (1)
-		{
-			if (start->value > cur->next->value)
-				index++;
-			cur = cur->next;
-			if (cur == start)
-				break ;
-		}
-		start->index = index;
+    i = 0;
+    while(stack_a->top)
+    {
+        if(stack_a->top->index == i) {
+            op_push(stack_a, stack_b);
+            ft_printf("pb\n");
+            i++;
+        } else {
+            op_rotate(stack_a);
+            ft_printf("ra\n");
+        }
+    }
 
-		start = start->next;
-		if (start == stack->top)
-			break ;
-	}
+    while(stack_b->top)
+    {
+        op_push(stack_b, stack_a);
+        ft_printf("pa\n");
+    }
 }

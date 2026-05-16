@@ -6,7 +6,7 @@
 /*   By: ttakemur <ttakemur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 18:39:10 by wezhou            #+#    #+#             */
-/*   Updated: 2026/05/17 14:29:14 by ttakemur         ###   ########.fr       */
+/*   Updated: 2026/05/17 14:30:01 by ttakemur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,13 @@ typedef enum e_bool
 typedef struct s_node
 {
 	int				value;
-	int				index;
+	size_t				index;
 	struct s_node	*next;
 	struct s_node	*prev;
 }					t_node;
-typedef	struct s_stack
-{
-	t_node	*top;
-	int	size;
-}	t_stack;
-
-
 typedef struct s_stack
 {
-	t_node			*head;
+	t_node			*top;
 	size_t			size;
 }					t_stack;
 
@@ -75,6 +68,10 @@ typedef struct s_config
 	float			disorder;
 }					t_config;
 
+t_stack *init_stack(void);
+t_config *init_config(void);
+t_ops *init_ops(void);
+
 /*
 ** parse_argv: parse argv into a circular doubly linked list and config.
 ** Returns 0 on success, ERROR on failure. On error the caller is
@@ -82,12 +79,15 @@ typedef struct s_config
 ** non-integer arguments, integers outside the int range, duplicates,
 ** and unknown / duplicated options.
 */
-int					parse_argv(int argc, char **argv, t_node **nodes,
+int					parse_argv(int argc, char **argv, t_stack *stack,
 						t_config *config);
-void				index_stack(t_stack **stack);
+void				index_stack(t_stack *stack);
 void				set_disorder(t_config *config);
+/* selection sort */
 void				simple_sort(t_stack *stack_a, t_stack *stack_b);
+/* ... sort */
 void				medium_sort(t_stack *stack_a, t_stack *stack_b);
+/* radix sort */
 void				complex_sort(t_stack *stack_a, t_stack *stack_b);
 
 t_node				*node_new(int value);

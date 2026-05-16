@@ -1,41 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   index_stack.c                                      :+:      :+:    :+:   */
+/*   config_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttakemur <ttakemur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/16 18:16:01 by ttakemur          #+#    #+#             */
-/*   Updated: 2026/05/16 19:18:55 by ttakemur         ###   ########.fr       */
+/*   Created: 2026/05/16 21:02:26 by ttakemur          #+#    #+#             */
+/*   Updated: 2026/05/16 21:14:57 by ttakemur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	index_stack(t_stack *stack)
+t_config	*init_config(void)
 {
-	size_t i;
-	size_t index;
-	t_node *start;
-	t_node *cur;
+	t_config *config;
+	config = malloc(sizeof(t_config));
+	if (!config)
+		return (NULL);
 
-	start = stack->top;
-	while (1)
-	{
-		cur = start;
-		index = 0;
-		while (1)
-		{
-			if (start->value > cur->next->value)
-				index++;
-			cur = cur->next;
-			if (cur == start)
-				break ;
-		}
-		start->index = index;
+	config->bench = FALSE;
+	config->disorder = 0;
+	config->sort_type = NOT_SPECIFIED;
 
-		start = start->next;
-		if (start == stack->top)
-			break ;
-	}
+	return (config);
 }
