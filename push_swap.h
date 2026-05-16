@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakemur <ttakemur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: wezhou <wezhou@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 18:39:10 by wezhou            #+#    #+#             */
-/*   Updated: 2026/05/16 17:01:23 by ttakemur         ###   ########.fr       */
+/*   Updated: 2026/05/16 17:30:51 by wezhou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,12 @@ typedef struct s_node
 	struct s_node	*next;
 	struct s_node	*prev;
 }					t_node;
+typedef	struct s_stack
+{
+	t_node	*top;
+	int	size;
+}	t_stack;
+
 
 typedef struct s_ops
 {
@@ -94,5 +100,8 @@ void				rra(t_node **a_nodes);
 void				rrb(t_node **b_nodes);
 void				rrr(t_node **a_nodes, t_node **b_nodes);
 void				display_bench(t_ops ops, t_config config);
+
+//ran : for test
+t_node	*create_elem(int value);
 
 #endif
