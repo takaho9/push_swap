@@ -39,10 +39,11 @@ typedef struct s_ops
 
 enum				e_sort_type
 {
-	SIMPLE,   // 0
-	MEDIUM,   // 1
-	COMPLEX,  // 2
-	ADAPTIVE, // 3
+	NOT_SPECIFIED, // 0
+	SIMPLE,        // 1
+	MEDIUM,        // 2
+	COMPLEX,       // 3
+	ADAPTIVE,      // 4
 };
 
 typedef struct s_config
