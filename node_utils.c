@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   node_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakemur <ttakemur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: wezhou <wezhou@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 16:28:37 by ttakemur          #+#    #+#             */
-/*   Updated: 2026/05/16 16:52:42 by ttakemur         ###   ########.fr       */
+/*   Updated: 2026/05/16 17:37:44 by wezhou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,16 @@ t_node	*node_add_next(t_node *cur, t_node *new)
 	new->next = next;
 	next->prev = new;
 	return (new);
+}
+
+t_stack	*init_stack(void)
+{
+	t_stack	*new_stack;
+
+	new_stack = malloc(sizeof(t_stack));
+	if (!new_stack)
+		return (NULL);
+	new_stack -> top = NULL:
+	new_stack -> size = 0;
+	return (new_stack);
 }

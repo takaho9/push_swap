@@ -6,17 +6,18 @@
 /*   By: wezhou <wezhou@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 16:08:21 by wezhou            #+#    #+#             */
-/*   Updated: 2026/05/16 17:23:37 by wezhou           ###   ########.fr       */
+/*   Updated: 2026/05/16 17:34:46 by wezhou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "push_swap.h"
 
-void	pa(t_node **a_nodes, t_node **b_nodes) // priority high
+void	pa(t_node *a_stack, t_node *b_stack) // priority high
 {
-	if (!b_nodes)
+	if (b_stack -> top == NULL)
 		return ;
+	if (!a_stack)
 	
 }
 
