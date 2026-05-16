@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wezhou <wezhou@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: ttakemur <ttakemur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 18:39:10 by wezhou            #+#    #+#             */
-/*   Updated: 2026/05/17 14:15:36 by wezhou           ###   ########.fr       */
+/*   Updated: 2026/05/17 14:29:14 by ttakemur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <stdlib.h>
 # include "libft/libft.h"
+# include <stdlib.h>
 
 # define ERROR (-1)
 
@@ -36,6 +36,12 @@ typedef	struct s_stack
 	int	size;
 }	t_stack;
 
+
+typedef struct s_stack
+{
+	t_node			*head;
+	size_t			size;
+}					t_stack;
 
 typedef struct s_ops
 {
@@ -78,11 +84,11 @@ typedef struct s_config
 */
 int					parse_argv(int argc, char **argv, t_node **nodes,
 						t_config *config);
-void				index_nodes(t_node **nodes);
+void				index_stack(t_stack **stack);
 void				set_disorder(t_config *config);
-void				simple_sort(t_node **node, t_ops *ops);
-void				medium_sort(t_node **node, t_ops *ops);
-void				complex_sort(t_node **node, t_ops *ops);
+void				simple_sort(t_stack *stack_a, t_stack *stack_b);
+void				medium_sort(t_stack *stack_a, t_stack *stack_b);
+void				complex_sort(t_stack *stack_a, t_stack *stack_b);
 
 t_node				*node_new(int value);
 t_node				*node_add_prev(t_node *cur, t_node *new);
