@@ -6,13 +6,23 @@
 /*   By: ttakemur <ttakemur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 18:39:10 by wezhou            #+#    #+#             */
-/*   Updated: 2026/05/14 21:52:44 by ttakemur         ###   ########.fr       */
+/*   Updated: 2026/05/16 17:01:23 by ttakemur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# include <stdlib.h>
+# include "libft/libft.h"
+
+# define ERROR (-1)
+
+typedef enum e_bool
+{
+	FALSE = 0,
+	TRUE = 1
+}					t_bool;
 typedef struct s_node
 {
 	int				value;
@@ -37,31 +47,30 @@ typedef struct s_ops
 	int				total;
 }					t_ops;
 
-enum				e_sort_type
+typedef enum e_sort_type
 {
-	NOT_SPECIFIED, // 0
-	SIMPLE,        // 1
-	MEDIUM,        // 2
-	COMPLEX,       // 3
-	ADAPTIVE,      // 4
-};
+	NOT_SPECIFIED,
+	SIMPLE,
+	MEDIUM,
+	COMPLEX,
+	ADAPTIVE,
+}					t_sort_type;
 
 typedef struct s_config
 {
-	e_sort_type		sort_type;
-	bool			bench;
+	t_sort_type		sort_type;
+	t_bool			bench;
 	float			disorder;
 }					t_config;
 
-# define ERROR -1
-// if error, return ERROR
-//  In case of error,
-// it must display "Error" followed by a \n on the standard error.
-// Errors include, for example: arguments that are not integers,
-// integers outside the
-// valid range, or duplicate values.
-// index is intialized by 0
-int					parse_argv(int argc, char *argv, t_node **nodes,
+/*
+** parse_argv: parse argv into a circular doubly linked list and config.
+** Returns 0 on success, ERROR on failure. On error the caller is
+** expected to print "Error\n" to stderr. Error cases include:
+** non-integer arguments, integers outside the int range, duplicates,
+** and unknown / duplicated options.
+*/
+int					parse_argv(int argc, char **argv, t_node **nodes,
 						t_config *config);
 void				index_nodes(t_node **nodes);
 void				set_disorder(t_config *config);
@@ -69,16 +78,21 @@ void				simple_sort(t_node **node, t_ops *ops);
 void				medium_sort(t_node **node, t_ops *ops);
 void				complex_sort(t_node **node, t_ops *ops);
 
+t_node				*node_new(int value);
+t_node				*node_add_prev(t_node *cur, t_node *new);
+t_node				*node_add_next(t_node *cur, t_node *new);
+
 void				sa(t_node **a_nodes);
 void				sb(t_node **b_nodes);
 void				ss(t_node **a_nodes, t_node **b_nodes);
-void				pa(t_node **a_nodes, t_node **b_nodes); // priority high
-void				pb(t_node **a_nodes, t_node **b_nodes); // priority high
-void				ra(t_node **a_nodes); // priority high
+void				pa(t_node **a_nodes, t_node **b_nodes);
+void				pb(t_node **a_nodes, t_node **b_nodes);
+void				ra(t_node **a_nodes);
 void				rb(t_node **b_nodes);
 void				rr(t_node **a_nodes, t_node **b_nodes);
 void				rra(t_node **a_nodes);
 void				rrb(t_node **b_nodes);
 void				rrr(t_node **a_nodes, t_node **b_nodes);
 void				display_bench(t_ops ops, t_config config);
+
 #endif
