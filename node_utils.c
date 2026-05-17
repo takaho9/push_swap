@@ -6,7 +6,7 @@
 /*   By: wezhou <wezhou@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 16:28:37 by ttakemur          #+#    #+#             */
-/*   Updated: 2026/05/16 17:37:44 by wezhou           ###   ########.fr       */
+/*   Updated: 2026/05/17 14:12:48 by wezhou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,29 @@ t_stack	*init_stack(void)
 	new_stack = malloc(sizeof(t_stack));
 	if (!new_stack)
 		return (NULL);
-	new_stack -> top = NULL:
+	new_stack -> top = NULL;
 	new_stack -> size = 0;
 	return (new_stack);
+}
+
+t_ops	*init_ops(void)
+{
+	t_ops	*init_ops;
+
+	init_ops = malloc(sizeof(t_ops));
+	if (!init_ops)
+		return (NULL);
+	init_ops -> sa = 0;
+	init_ops -> sb = 0;
+	init_ops -> ss = 0;
+	init_ops -> pa = 0;
+	init_ops -> pb = 0;
+	init_ops -> ra = 0;
+	init_ops -> rb = 0;
+	init_ops -> rr = 0;
+	init_ops -> rra = 0;
+	init_ops -> rrb = 0;
+	init_ops -> rrr = 0;
+	init_ops -> total = 0;
+	return (init_ops);
 }

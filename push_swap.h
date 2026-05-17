@@ -6,7 +6,7 @@
 /*   By: wezhou <wezhou@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 18:39:10 by wezhou            #+#    #+#             */
-/*   Updated: 2026/05/16 17:30:51 by wezhou           ###   ########.fr       */
+/*   Updated: 2026/05/17 14:15:36 by wezhou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ t_node				*node_add_next(t_node *cur, t_node *new);
 void				sa(t_node **a_nodes);
 void				sb(t_node **b_nodes);
 void				ss(t_node **a_nodes, t_node **b_nodes);
-void				pa(t_node **a_nodes, t_node **b_nodes);
-void				pb(t_node **a_nodes, t_node **b_nodes);
+void				pa(t_stack *a_stack, t_stack *b_stack, t_ops *ops);
+void				pb(t_stack *a_stack, t_stack *b_stack, t_ops *ops);
 void				ra(t_node **a_nodes);
 void				rb(t_node **b_nodes);
 void				rr(t_node **a_nodes, t_node **b_nodes);
@@ -102,6 +102,7 @@ void				rrr(t_node **a_nodes, t_node **b_nodes);
 void				display_bench(t_ops ops, t_config config);
 
 //ran : for test
-t_node	*create_elem(int value);
+t_ops	*init_ops(void);
+t_stack	*init_stack(void);
 
 #endif
