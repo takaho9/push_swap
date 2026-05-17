@@ -6,7 +6,7 @@
 /*   By: wezhou <wezhou@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/17 15:09:09 by wezhou            #+#    #+#             */
-/*   Updated: 2026/05/17 15:10:08 by wezhou           ###   ########.fr       */
+/*   Updated: 2026/05/17 15:36:24 by wezhou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ra(t_stack *a_stack, t_ops *ops_stats)
 {
-	if (a_stack -> size == 0 || a_stack -> size == 1)
+	if (a_stack -> size < 2)
 		return ;
 	a_stack -> top = a_stack -> top -> next;
 	ops_stats -> ra++;
@@ -25,7 +25,7 @@ void	ra(t_stack *a_stack, t_ops *ops_stats)
 
 void	rb(t_stack *b_stack, t_ops *ops_stats)
 {
-	if (b_stack -> size == 0 || b_stack -> size == 1)
+	if (b_stack -> size < 2)
 		return ;
 	b_stack -> top = b_stack -> top -> next;
 	ops_stats -> rb++;
@@ -33,6 +33,47 @@ void	rb(t_stack *b_stack, t_ops *ops_stats)
 	// ft_printf("ra\n");
 }// priority high
 
+void	rr(t_stack *a_stack, t_stack *b_stack, t_ops *ops_stats)
+{
+	if (a_stack -> size < 2 || b_stack -> size < 2)
+		return ;
+	a_stack -> top = a_stack -> top -> next;
+	b_stack -> top = b_stack -> top -> next;
+	ops_stats -> rr++;
+	ops_stats -> total++;
+	ft_printf("rr\n");
+}
+
+void	rra(t_stack *a_stack, t_ops *ops_stats)
+{
+	if (a_stack -> size < 2)
+		return ;
+	a_stack -> top = a_stack -> top -> prev;
+	ops_stats -> rra++;
+	ops_stats -> total;
+	ft_printf("rra\n");
+}
+
+void	rrb(t_stack *b_stack, t_ops *ops_stats)
+{
+	if (b_stack -> size < 2)
+		return ;
+	b_stack -> top = b_stack -> top -> prev;
+	ops_stats -> rrb++;
+	ops_stats -> total;
+	ft_printf("rrb\n");
+}
+
+void	rrr(t_stack *a_stack, t_stack *b_stack, t_ops *ops_stats)
+{
+	if (a_stack -> size < 2 || b_stack -> size < 2)
+		return ;
+	a_stack -> top = a_stack -> top -> prev;
+	b_stack -> top = b_stack -> top -> prev;
+	ops_stats -> rrr++;
+	ops_stats -> total++;
+	ft_printf("rrr\n");
+}
 
 
 // #include <stdio.h>

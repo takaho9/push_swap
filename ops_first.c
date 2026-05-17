@@ -6,11 +6,10 @@
 /*   By: wezhou <wezhou@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 16:08:21 by wezhou            #+#    #+#             */
-/*   Updated: 2026/05/17 15:09:44 by wezhou           ###   ########.fr       */
+/*   Updated: 2026/05/17 15:37:09 by wezhou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "push_swap.h"
 
 void	pa(t_stack *a_stack, t_stack *b_stack, t_ops *ops_stats) // priority high
