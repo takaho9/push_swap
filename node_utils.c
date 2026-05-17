@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   node_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakemur <ttakemur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: wezhou <wezhou@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 16:28:37 by ttakemur          #+#    #+#             */
-/*   Updated: 2026/05/17 14:29:51 by ttakemur         ###   ########.fr       */
+/*   Updated: 2026/05/17 14:53:22 by wezhou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ t_stack	*init_stack(void)
 	return (new_stack);
 }
 
-t_ops	*init_ops(void)
+t_ops	*init_ops_stats(void)
 {
 	t_ops	*init_ops;
 

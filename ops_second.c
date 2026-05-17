@@ -1,60 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ops_former_ran.c                                   :+:      :+:    :+:   */
+/*   ops_second.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wezhou <wezhou@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/16 16:08:21 by wezhou            #+#    #+#             */
-/*   Updated: 2026/05/17 14:17:13 by wezhou           ###   ########.fr       */
+/*   Created: 2026/05/17 15:09:09 by wezhou            #+#    #+#             */
+/*   Updated: 2026/05/17 15:10:08 by wezhou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "push_swap.h"
 
-void	pa(t_stack *a_stack, t_stack *b_stack, t_ops *ops) // priority high
+void	ra(t_stack *a_stack, t_ops *ops_stats)
 {
-	t_node	*bottom;
-	t_node	*node;
-
-	if (b_stack -> size == 0)
+	if (a_stack -> size == 0 || a_stack -> size == 1)
 		return ;
-	node = b_stack -> top;
-	if (b_stack -> size == 1)
-		b_stack -> top = NULL;
-	else
-	{
-		bottom = b_stack -> top -> prev;
-		b_stack -> top = node -> next;
-		bottom -> next = b_stack -> top;
-		b_stack -> top -> prev = bottom;
-	}
-	b_stack -> size--;
-	if (a_stack -> size == 0)
-	{
-		node -> prev = node;
-		node -> next = node;
-		a_stack -> top = node;
-	}
-	else
-	{
-		bottom = a_stack -> top -> prev;
-		bottom -> next = node;
-		a_stack -> top -> next -> prev = node;
-		node -> prev =bottom;
-		node -> next =  a_stack -> top -> next -> prev;
-		a_stack -> top = node;
-	}
-	a_stack -> size++;
-	ops -> pa++;
-	ops -> total++;
-	// ft_printf("pa\n");
-}
+	a_stack -> top = a_stack -> top -> next;
+	ops_stats -> ra++;
+	ops_stats -> total++;
+	// ft_printf("ra\n");
+}// priority high
 
-// void				pb(t_node **a_nodes, t_node **b_nodes); // priority high
 
-// void				ra(t_node **a_nodes); // priority high
+void	rb(t_stack *b_stack, t_ops *ops_stats)
+{
+	if (b_stack -> size == 0 || b_stack -> size == 1)
+		return ;
+	b_stack -> top = b_stack -> top -> next;
+	ops_stats -> rb++;
+	ops_stats -> total++;
+	// ft_printf("ra\n");
+}// priority high
+
 
 
 // #include <stdio.h>
@@ -72,9 +50,9 @@ void	pa(t_stack *a_stack, t_stack *b_stack, t_ops *ops) // priority high
 
 // 	a_stack = init_stack();
 // 	b_stack = init_stack();
-// 	ops = init_ops();
+// 	ops = init_ops_stats();
 // 	a_nodes = node_new(5);
-// 	b_nodes = node_new(5);
+// 	b_nodes = node_new(6);
 // 	node1 = node_new(1);
 // 	node2 = node_new(2);
 // 	node3 = node_new(3);
@@ -90,16 +68,16 @@ void	pa(t_stack *a_stack, t_stack *b_stack, t_ops *ops) // priority high
 // 	a_stack -> size = 1;
 // 	b_stack -> top = b_nodes;
 // 	b_stack -> size = 4;
-// 	cur = b_nodes;
+// 	cur = b_stack -> top;
 // 	a_nodes -> prev = a_nodes;
 // 	for (int i = 0; i < 4; i++)
 // 	{
 // 		printf("%d\n", cur -> value);
 // 		cur = cur -> next;
 // 	}
-// 	printf("b_stack size : %d\n", b_stack -> size);
+// 	printf("b_stack size : %ld\n", b_stack -> size);
 // 	pa(a_stack, b_stack, ops);
-// 	cur = b_nodes;
+// 	cur = b_stack -> top;
 // 	printf("\n");
 // 	for (int i = 0; i < 3; i++)
 // 	{
@@ -107,13 +85,28 @@ void	pa(t_stack *a_stack, t_stack *b_stack, t_ops *ops) // priority high
 // 		cur = cur -> next;
 // 	}
 // 	printf("\n");
-// 	printf("b_stack size : %d\n", b_stack -> size);
-// 	cur = a_nodes;
+// 	printf("b_stack size : %ld\n", b_stack -> size);
+// 	cur = a_stack -> top;
 // 	for (int i = 0; i < 2; i++)
 // 	{
 // 		printf("%d\n", cur -> value);
 // 		cur = cur -> next;
 // 	}
 // 	printf("\n");
-// 	printf("a_stack size : %d\n", a_stack -> size);
+// 	printf("a_stack size : %ld\n", a_stack -> size);
+// 	ra(a_stack, ops);
+// 	cur = a_stack -> top;
+// 	for (int i = 0; i < 2; i++)
+// 	{
+// 		printf("%d\n", cur -> value);
+// 		cur = cur -> next;
+// 	}
+// 	printf("\n");
+// 	rb(b_stack, ops);
+// 	cur = b_stack -> top;
+// 	for (int i = 0; i < 3; i++)
+// 	{
+// 		printf("%d\n", cur -> value);
+// 		cur = cur -> next;
+// 	}
 // }
