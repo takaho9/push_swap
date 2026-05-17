@@ -6,7 +6,7 @@
 #    By: ttakemur <ttakemur@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/23 21:14:32 by ttakemur          #+#    #+#              #
-#    Updated: 2026/04/25 22:29:00 by ttakemur         ###   ########.fr        #
+#    Updated: 2026/05/17 15:40:34 by ttakemur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,14 @@ SRCS := ft_atoi.c \
 		ft_lstdelone.c \
 		ft_lstclear.c \
 		ft_lstiter.c \
-		ft_lstmap.c
+		ft_lstmap.c \
+		ft_printf.c \
+		ft_putchar.c \
+		ft_putstr.c \
+		ft_putnbr.c \
+		ft_putunsigned.c \
+		ft_puthex.c \
+		ft_putptr.c
 		
 OBJS := $(SRCS:.c=.o)
 

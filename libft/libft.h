@@ -6,14 +6,17 @@
 /*   By: ttakemur <ttakemur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/24 00:47:41 by ttakemur          #+#    #+#             */
-/*   Updated: 2026/04/27 00:36:31 by ttakemur         ###   ########.fr       */
+/*   Updated: 2026/05/17 15:37:03 by ttakemur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# define ERROR -1
+
 # include <limits.h>
+# include <stdarg.h>
 # include <stddef.h>
 # include <stdint.h>
 # include <stdlib.h>
@@ -77,4 +80,13 @@ void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
 
+/* ft_printf */
+int					ft_printf(const char *fmt, ...);
+int					ft_handle_specifier(va_list ap, char spec);
+int					ft_putchar(char c);
+int					ft_putstr(char *s);
+int					ft_putnbr(int n);
+int					ft_putunsigned(unsigned int n);
+int					ft_puthex(unsigned long n, int upper);
+int					ft_putptr(void *ptr);
 #endif
