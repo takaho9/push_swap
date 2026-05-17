@@ -6,7 +6,7 @@
 /*   By: wezhou <wezhou@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 18:39:10 by wezhou            #+#    #+#             */
-/*   Updated: 2026/05/17 17:50:15 by wezhou           ###   ########.fr       */
+/*   Updated: 2026/05/17 18:31:24 by wezhou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "libft/libft.h"
 # include <stdlib.h>
 
-# define ERROR (-1)
+// # define ERROR (-1)
 
 typedef enum e_bool
 {
@@ -82,7 +82,7 @@ t_ops *init_ops(void);
 int					parse_argv(int argc, char **argv, t_stack *stack,
 						t_config *config);
 void				index_stack(t_stack *stack);
-float				set_disorder(t_stack *a_stack);
+double				set_disorder(t_stack *a_stack);
 /* selection sort */
 void				simple_sort(t_stack *a_stack, t_stack *b_stack, t_ops *ops);
 /* ... sort */
@@ -112,4 +112,5 @@ t_ops	*init_ops(void);
 t_stack	*init_stack(void);
 void	pa_back(t_stack *a_stack, t_ops *ops, t_node *node);
 void	pb_back(t_stack *b_stack, t_ops *ops, t_node *node);
+double	compute_disorder(t_stack *a_stack, t_node *node_i, t_node *node_j, size_t mistake, size_t total_pairs);
 #endif
