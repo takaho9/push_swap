@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakemur <ttakemur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: wezhou <wezhou@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 18:39:10 by wezhou            #+#    #+#             */
-/*   Updated: 2026/05/17 16:54:33 by ttakemur         ###   ########.fr       */
+/*   Updated: 2026/05/17 17:42:57 by wezhou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ t_ops *init_ops(void);
 int					parse_argv(int argc, char **argv, t_stack *stack,
 						t_config *config);
 void				index_stack(t_stack *stack);
-void				set_disorder(t_config *config);
+float				set_disorder(t_stack *a_stack);
 /* selection sort */
 void				simple_sort(t_stack *a_stack, t_stack *b_stack, t_ops *ops);
 /* ... sort */

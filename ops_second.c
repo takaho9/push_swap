@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ops_second.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakemur <ttakemur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: wezhou <wezhou@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/17 15:09:09 by wezhou            #+#    #+#             */
-/*   Updated: 2026/05/17 16:54:03 by ttakemur         ###   ########.fr       */
+/*   Updated: 2026/05/17 17:45:41 by wezhou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ra(t_stack *a_stack, t_ops *ops)
 {
-	if (a_stack -> size < 2)
+	if (!a_stack || a_stack -> size < 2)
 		return ;
 	a_stack -> top = a_stack -> top -> next;
 	ops -> ra++;
@@ -25,7 +25,7 @@ void	ra(t_stack *a_stack, t_ops *ops)
 
 void	rb(t_stack *b_stack, t_ops *ops)
 {
-	if (b_stack -> size < 2)
+	if (!b_stack || b_stack -> size < 2)
 		return ;
 	b_stack -> top = b_stack -> top -> next;
 	ops -> rb++;
@@ -35,7 +35,7 @@ void	rb(t_stack *b_stack, t_ops *ops)
 
 void	rr(t_stack *a_stack, t_stack *b_stack, t_ops *ops)
 {
-	if (a_stack -> size < 2 || b_stack -> size < 2)
+	if (!a_stack || !b_stack || a_stack -> size < 2 || b_stack -> size < 2)
 		return ;
 	a_stack -> top = a_stack -> top -> next;
 	b_stack -> top = b_stack -> top -> next;
@@ -46,7 +46,7 @@ void	rr(t_stack *a_stack, t_stack *b_stack, t_ops *ops)
 
 void	rra(t_stack *a_stack, t_ops *ops)
 {
-	if (a_stack -> size < 2)
+	if (!a_stack || a_stack -> size < 2)
 		return ;
 	a_stack -> top = a_stack -> top -> prev;
 	ops -> rra++;
@@ -56,7 +56,7 @@ void	rra(t_stack *a_stack, t_ops *ops)
 
 void	rrb(t_stack *b_stack, t_ops *ops)
 {
-	if (b_stack -> size < 2)
+	if (!b_stack || b_stack -> size < 2)
 		return ;
 	b_stack -> top = b_stack -> top -> prev;
 	ops -> rrb++;
@@ -66,7 +66,7 @@ void	rrb(t_stack *b_stack, t_ops *ops)
 
 void	rrr(t_stack *a_stack, t_stack *b_stack, t_ops *ops)
 {
-	if (a_stack -> size < 2 || b_stack -> size < 2)
+	if (!a_stack || !b_stack || a_stack -> size < 2 || b_stack -> size < 2)
 		return ;
 	a_stack -> top = a_stack -> top -> prev;
 	b_stack -> top = b_stack -> top -> prev;
@@ -75,79 +75,90 @@ void	rrr(t_stack *a_stack, t_stack *b_stack, t_ops *ops)
 	ft_printf("rrr\n");
 }
 
+#include <stdio.h>
+int	main(void)
+{
+	//create nodes
+	t_node	*node1 = node_new(1);
+	t_node	*node2 = node_new(2);
+	t_node	*node3 = node_new(3);
+	t_node	*node4 = node_new(4);
+	t_node	*node5 = node_new(5);
+	t_node	*node6 = node_new(6);
+	t_node	*node7 = node_new(7);
+	t_node	*node8 = node_new(8);
+	t_node	*node9 = node_new(9);
+	t_node	*node10 = node_new(10);
+	t_node	*node11 = node_new(11);
+	t_node	*node12 = node_new(12);
+	t_node	*node13 = node_new(13);
+	t_stack	*a = init_stack();
+	t_stack	*b = init_stack();
+	t_ops	*ops = init_ops();
+	t_node	*cur;
+	size_t	i;
 
-// #include <stdio.h>
-// int	main(void)
-// {
-// 	t_node	*a_nodes;
-// 	t_node	*b_nodes;
-// 	t_node	*node1;
-// 	t_node	*node2;
-// 	t_node	*node3;
-// 	t_node	*cur;
-// 	t_stack	*a_stack;
-// 	t_stack	*b_stack;
-// 	t_ops	*ops;
-
-// 	a_stack = init_stack();
-// 	b_stack = init_stack();
-// 	ops = init_ops();
-// 	a_nodes = node_new(5);
-// 	b_nodes = node_new(6);
-// 	node1 = node_new(1);
-// 	node2 = node_new(2);
-// 	node3 = node_new(3);
-// 	b_nodes -> next = node1;
-// 	node1 -> prev = b_nodes;
-// 	node1 -> next = node2;
-// 	node2 -> prev = node1;
-// 	node2 -> next = node3;
-// 	node3 -> prev = node2;
-// 	node3 -> next = b_nodes;
-// 	b_nodes -> prev = node3;
-// 	a_stack -> top = a_nodes;
-// 	a_stack -> size = 1;
-// 	b_stack -> top = b_nodes;
-// 	b_stack -> size = 4;
-// 	cur = b_stack -> top;
-// 	a_nodes -> prev = a_nodes;
-// 	for (int i = 0; i < 4; i++)
-// 	{
-// 		printf("%d\n", cur -> value);
-// 		cur = cur -> next;
-// 	}
-// 	printf("b_stack size : %ld\n", b_stack -> size);
-// 	pa(a_stack, b_stack, ops);
-// 	cur = b_stack -> top;
-// 	printf("\n");
-// 	for (int i = 0; i < 3; i++)
-// 	{
-// 		printf("%d\n", cur -> value);
-// 		cur = cur -> next;
-// 	}
-// 	printf("\n");
-// 	printf("b_stack size : %ld\n", b_stack -> size);
-// 	cur = a_stack -> top;
-// 	for (int i = 0; i < 2; i++)
-// 	{
-// 		printf("%d\n", cur -> value);
-// 		cur = cur -> next;
-// 	}
-// 	printf("\n");
-// 	printf("a_stack size : %ld\n", a_stack -> size);
-// 	ra(a_stack, ops);
-// 	cur = a_stack -> top;
-// 	for (int i = 0; i < 2; i++)
-// 	{
-// 		printf("%d\n", cur -> value);
-// 		cur = cur -> next;
-// 	}
-// 	printf("\n");
-// 	rb(b_stack, ops);
-// 	cur = b_stack -> top;
-// 	for (int i = 0; i < 3; i++)
-// 	{
-// 		printf("%d\n", cur -> value);
-// 		cur = cur -> next;
-// 	}
-// }
+	i = 0;
+	//create stack a
+	a -> top = node1;
+	a -> size = 5;
+	node1 -> next = node2;
+	node2 -> next = node3;
+	node3 -> next = node4;
+	node4 -> next = node5;
+	node5 -> next = node1;
+	node1 -> prev = node5;
+	node5 -> prev = node4;
+	node4 -> prev = node3;
+	node3 -> prev = node2;
+	node2 -> prev = node1;
+	//create stack b
+	b -> top = node6;
+	b -> size = 8;
+	node6 -> next = node7;
+	node7 -> next = node8;
+	node8 -> next = node9;
+	node9 -> next = node10;
+	node11 -> next = node12;
+	node12 -> next = node13;
+	node13 -> next = node6;
+	node6 -> prev = node13;
+	node13 -> prev = node12;
+	node12 -> prev = node11;
+	node10 -> prev = node9;
+	node9 -> prev = node8;
+	node8 -> prev = node7;
+	node7 -> prev = node6;
+	//test ra
+	cur = a -> top;
+	while (i < a -> size)
+	{
+		printf("%d ", cur -> value);
+		cur = cur -> next;
+	}
+	printf("\nra : %d\n", ops -> ra);
+	ra(a, ops);
+	printf("\nra : %d\n", ops -> ra);
+	cur = a -> top;
+	while (i < a -> size)
+	{
+		printf("%d ", cur -> value);
+		cur = cur -> next;
+	}
+	//test rb
+	cur = b -> top;
+	while (i < b -> size)
+	{
+		printf("%d ", cur -> value);
+		cur = cur -> next;
+	}
+	printf("\nrb : %d\n", ops -> ra);
+	rb(b, ops);
+	printf("\nrb : %d\n", ops -> ra);
+	cur = b -> top;
+	while (i < b -> size)
+	{
+		printf("%d ", cur -> value);
+		cur = cur -> next;
+	}
+}

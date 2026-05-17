@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   ops_first.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakemur <ttakemur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: wezhou <wezhou@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 16:08:21 by wezhou            #+#    #+#             */
-/*   Updated: 2026/05/17 16:53:57 by ttakemur         ###   ########.fr       */
+/*   Updated: 2026/05/17 17:44:23 by wezhou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	pa(t_stack *a_stack, t_stack *b_stack, t_ops *ops) // priority high
+void	pa(t_stack *a_stack, t_stack *b_stack, t_ops *ops)
 {
 	t_node	*bottom;
 	t_node	*node;
 
-	if (b_stack -> size == 0)
+	if (!a_stack || !b_stack || b_stack -> size == 0)
 		return ;
 	node = b_stack -> top;
 	if (b_stack -> size == 1)
@@ -37,7 +37,7 @@ void	pa_back(t_stack *a_stack, t_ops *ops, t_node *node)
 {
 	t_node	*bottom;
 
-	if (a_stack -> size == 0)
+	if (!a_stack || a_stack -> size == 0)
 	{
 		node -> prev = node;
 		node -> next = node;
@@ -55,7 +55,7 @@ void	pa_back(t_stack *a_stack, t_ops *ops, t_node *node)
 	a_stack -> size++;
 	ops -> pa++;
 	ops -> total++;
-	// ft_printf("pa\n");
+	ft_printf("pa\n");
 }
 
 void	pb(t_stack *a_stack, t_stack *b_stack, t_ops *ops)
@@ -63,7 +63,7 @@ void	pb(t_stack *a_stack, t_stack *b_stack, t_ops *ops)
 	t_node	*bottom;
 	t_node	*node;
 
-	if (a_stack -> size == 0)
+	if (!a_stack || !b_stack || a_stack -> size == 0)
 		return ;
 	node = a_stack -> top;
 	if (a_stack -> size == 1)
@@ -77,13 +77,13 @@ void	pb(t_stack *a_stack, t_stack *b_stack, t_ops *ops)
 	}
 	a_stack -> size--;
 	pb_back(b_stack, ops, node);
-}// priority high
+}
 
 void	pb_back(t_stack *b_stack, t_ops *ops, t_node *node)
 {
 	t_node	*bottom;
 
-	if (b_stack -> size == 0)
+	if (!b_stack || b_stack -> size == 0)
 	{
 		node -> prev = node;
 		node -> next = node;
@@ -101,7 +101,7 @@ void	pb_back(t_stack *b_stack, t_ops *ops, t_node *node)
 	b_stack -> size++;
 	ops -> pb++;
 	ops -> total++;
-	// ft_printf("pa\n");
+	ft_printf("pa\n");
 }
 
 // #include <stdio.h>
