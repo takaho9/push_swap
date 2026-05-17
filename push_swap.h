@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wezhou <wezhou@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: ttakemur <ttakemur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 18:39:10 by wezhou            #+#    #+#             */
-/*   Updated: 2026/05/17 18:31:24 by wezhou           ###   ########.fr       */
+/*   Updated: 2026/05/17 19:20:08 by ttakemur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void				simple_sort(t_stack *a_stack, t_stack *b_stack, t_ops *ops);
 /* ... sort */
 void				medium_sort(t_stack *a_stack, t_stack *b_stack, t_ops *ops);
 /* radix sort */
-void				complex_sort(t_stack *a_stack, t_stack, t_ops *b_stack, t_ops);
+void				complex_sort(t_stack *a_stack, t_stack *b_stack, t_ops *ops);
 
 t_node				*node_new(int value);
 t_node				*node_add_prev(t_node *cur, t_node *new);
