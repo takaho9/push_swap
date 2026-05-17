@@ -6,7 +6,7 @@
 /*   By: ttakemur <ttakemur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 18:39:10 by wezhou            #+#    #+#             */
-/*   Updated: 2026/05/17 14:30:01 by ttakemur         ###   ########.fr       */
+/*   Updated: 2026/05/17 14:46:36 by ttakemur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,28 +84,28 @@ int					parse_argv(int argc, char **argv, t_stack *stack,
 void				index_stack(t_stack *stack);
 void				set_disorder(t_config *config);
 /* selection sort */
-void				simple_sort(t_stack *stack_a, t_stack *stack_b);
+void				simple_sort(t_stack *a_stack, t_stack *b_stack);
 /* ... sort */
-void				medium_sort(t_stack *stack_a, t_stack *stack_b);
+void				medium_sort(t_stack *a_stack, t_stack *b_stack);
 /* radix sort */
-void				complex_sort(t_stack *stack_a, t_stack *stack_b);
+void				complex_sort(t_stack *a_stack, t_stack *b_stack);
 
 t_node				*node_new(int value);
 t_node				*node_add_prev(t_node *cur, t_node *new);
 t_node				*node_add_next(t_node *cur, t_node *new);
 
-void				sa(t_node **a_nodes);
-void				sb(t_node **b_nodes);
-void				ss(t_node **a_nodes, t_node **b_nodes);
+void				sa(t_node *a_stack);
+void				sb(t_node *b_nodes);
+void				ss(t_node *a_stack, t_node *b_stack);
 void				pa(t_stack *a_stack, t_stack *b_stack, t_ops *ops);
 void				pb(t_stack *a_stack, t_stack *b_stack, t_ops *ops);
-void				ra(t_node **a_nodes);
-void				rb(t_node **b_nodes);
-void				rr(t_node **a_nodes, t_node **b_nodes);
-void				rra(t_node **a_nodes);
-void				rrb(t_node **b_nodes);
-void				rrr(t_node **a_nodes, t_node **b_nodes);
-void				display_bench(t_ops ops, t_config config);
+void				ra(t_node *a_stack);
+void				rb(t_node *b_stack);
+void				rr(t_node *a_stack, t_node *b_stack);
+void				rra(t_node *a_stack);
+void				rrb(t_node *b_stack);
+void				rrr(t_node *a_stack, t_node *b_stack);
+void				display_bench(t_ops *ops, t_config *config);
 
 //ran : for test
 t_ops	*init_ops(void);
