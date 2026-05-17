@@ -3,75 +3,75 @@
 /*                                                        :::      ::::::::   */
 /*   ops_second.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wezhou <wezhou@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: ttakemur <ttakemur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/17 15:09:09 by wezhou            #+#    #+#             */
-/*   Updated: 2026/05/17 15:36:24 by wezhou           ###   ########.fr       */
+/*   Updated: 2026/05/17 16:54:03 by ttakemur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ra(t_stack *a_stack, t_ops *ops_stats)
+void	ra(t_stack *a_stack, t_ops *ops)
 {
 	if (a_stack -> size < 2)
 		return ;
 	a_stack -> top = a_stack -> top -> next;
-	ops_stats -> ra++;
-	ops_stats -> total++;
+	ops -> ra++;
+	ops -> total++;
 	// ft_printf("ra\n");
 }// priority high
 
 
-void	rb(t_stack *b_stack, t_ops *ops_stats)
+void	rb(t_stack *b_stack, t_ops *ops)
 {
 	if (b_stack -> size < 2)
 		return ;
 	b_stack -> top = b_stack -> top -> next;
-	ops_stats -> rb++;
-	ops_stats -> total++;
+	ops -> rb++;
+	ops -> total++;
 	// ft_printf("ra\n");
 }// priority high
 
-void	rr(t_stack *a_stack, t_stack *b_stack, t_ops *ops_stats)
+void	rr(t_stack *a_stack, t_stack *b_stack, t_ops *ops)
 {
 	if (a_stack -> size < 2 || b_stack -> size < 2)
 		return ;
 	a_stack -> top = a_stack -> top -> next;
 	b_stack -> top = b_stack -> top -> next;
-	ops_stats -> rr++;
-	ops_stats -> total++;
+	ops -> rr++;
+	ops -> total++;
 	ft_printf("rr\n");
 }
 
-void	rra(t_stack *a_stack, t_ops *ops_stats)
+void	rra(t_stack *a_stack, t_ops *ops)
 {
 	if (a_stack -> size < 2)
 		return ;
 	a_stack -> top = a_stack -> top -> prev;
-	ops_stats -> rra++;
-	ops_stats -> total;
+	ops -> rra++;
+	ops -> total;
 	ft_printf("rra\n");
 }
 
-void	rrb(t_stack *b_stack, t_ops *ops_stats)
+void	rrb(t_stack *b_stack, t_ops *ops)
 {
 	if (b_stack -> size < 2)
 		return ;
 	b_stack -> top = b_stack -> top -> prev;
-	ops_stats -> rrb++;
-	ops_stats -> total;
+	ops -> rrb++;
+	ops -> total;
 	ft_printf("rrb\n");
 }
 
-void	rrr(t_stack *a_stack, t_stack *b_stack, t_ops *ops_stats)
+void	rrr(t_stack *a_stack, t_stack *b_stack, t_ops *ops)
 {
 	if (a_stack -> size < 2 || b_stack -> size < 2)
 		return ;
 	a_stack -> top = a_stack -> top -> prev;
 	b_stack -> top = b_stack -> top -> prev;
-	ops_stats -> rrr++;
-	ops_stats -> total++;
+	ops -> rrr++;
+	ops -> total++;
 	ft_printf("rrr\n");
 }
 
@@ -91,7 +91,7 @@ void	rrr(t_stack *a_stack, t_stack *b_stack, t_ops *ops_stats)
 
 // 	a_stack = init_stack();
 // 	b_stack = init_stack();
-// 	ops = init_ops_stats();
+// 	ops = init_ops();
 // 	a_nodes = node_new(5);
 // 	b_nodes = node_new(6);
 // 	node1 = node_new(1);

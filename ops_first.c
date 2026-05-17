@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ops_first.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wezhou <wezhou@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: ttakemur <ttakemur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 16:08:21 by wezhou            #+#    #+#             */
-/*   Updated: 2026/05/17 15:37:09 by wezhou           ###   ########.fr       */
+/*   Updated: 2026/05/17 16:53:57 by ttakemur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	pa(t_stack *a_stack, t_stack *b_stack, t_ops *ops_stats) // priority high
+void	pa(t_stack *a_stack, t_stack *b_stack, t_ops *ops) // priority high
 {
 	t_node	*bottom;
 	t_node	*node;
@@ -30,10 +30,10 @@ void	pa(t_stack *a_stack, t_stack *b_stack, t_ops *ops_stats) // priority high
 		b_stack -> top -> prev = bottom;
 	}
 	b_stack -> size--;
-	pa_back(a_stack, ops_stats, node);
+	pa_back(a_stack, ops, node);
 }
 
-void	pa_back(t_stack *a_stack, t_ops *ops_stats, t_node *node)
+void	pa_back(t_stack *a_stack, t_ops *ops, t_node *node)
 {
 	t_node	*bottom;
 
@@ -53,12 +53,12 @@ void	pa_back(t_stack *a_stack, t_ops *ops_stats, t_node *node)
 		a_stack -> top = node;
 	}
 	a_stack -> size++;
-	ops_stats -> pa++;
-	ops_stats -> total++;
+	ops -> pa++;
+	ops -> total++;
 	// ft_printf("pa\n");
 }
 
-void	pb(t_stack *a_stack, t_stack *b_stack, t_ops *ops_stats)
+void	pb(t_stack *a_stack, t_stack *b_stack, t_ops *ops)
 {
 	t_node	*bottom;
 	t_node	*node;
@@ -76,10 +76,10 @@ void	pb(t_stack *a_stack, t_stack *b_stack, t_ops *ops_stats)
 		a_stack -> top -> prev = bottom;
 	}
 	a_stack -> size--;
-	pb_back(b_stack, ops_stats, node);
+	pb_back(b_stack, ops, node);
 }// priority high
 
-void	pb_back(t_stack *b_stack, t_ops *ops_stats, t_node *node)
+void	pb_back(t_stack *b_stack, t_ops *ops, t_node *node)
 {
 	t_node	*bottom;
 
@@ -99,8 +99,8 @@ void	pb_back(t_stack *b_stack, t_ops *ops_stats, t_node *node)
 		b_stack -> top = node;
 	}
 	b_stack -> size++;
-	ops_stats -> pb++;
-	ops_stats -> total++;
+	ops -> pb++;
+	ops -> total++;
 	// ft_printf("pa\n");
 }
 
@@ -119,7 +119,7 @@ void	pb_back(t_stack *b_stack, t_ops *ops_stats, t_node *node)
 
 // 	a_stack = init_stack();
 // 	b_stack = init_stack();
-// 	ops = init_ops_stats();
+// 	ops = init_ops();
 // 	a_nodes = node_new(5);
 // 	b_nodes = node_new(6);
 // 	node1 = node_new(1);

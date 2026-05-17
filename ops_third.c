@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ops_third.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wezhou <wezhou@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: ttakemur <ttakemur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/17 15:36:51 by wezhou            #+#    #+#             */
-/*   Updated: 2026/05/17 15:52:45 by wezhou           ###   ########.fr       */
+/*   Updated: 2026/05/17 16:54:14 by ttakemur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sa(t_stack *a_stack, t_ops *ops_stats)
+void	sa(t_stack *a_stack, t_ops *ops)
 {
 	int		tmp_va;
 	size_t	tmp_in;
@@ -25,12 +25,12 @@ void	sa(t_stack *a_stack, t_ops *ops_stats)
 	a_stack -> top -> index = a_stack -> top -> next -> index;
 	a_stack -> top -> next -> value = tmp_va;
 	a_stack -> top -> next -> index = tmp_in;
-	ops_stats -> sa++;
-	ops_stats -> total++;
+	ops -> sa++;
+	ops -> total++;
 	ft_printf("sa\n");
 }
 
-void	sb(t_stack *b_stack, t_ops *ops_stats)
+void	sb(t_stack *b_stack, t_ops *ops)
 {
 	int		tmp_va;
 	size_t	tmp_in;
@@ -43,12 +43,12 @@ void	sb(t_stack *b_stack, t_ops *ops_stats)
 	b_stack -> top -> index = b_stack -> top -> next -> index;
 	b_stack -> top -> next -> value = tmp_va;
 	b_stack -> top -> next -> index = tmp_in;
-	ops_stats -> sb++;
-	ops_stats -> total++;
+	ops -> sb++;
+	ops -> total++;
 	ft_printf("sb\n");
 }
 
-void	ss(t_stack *a_stack, t_stack *b_stack, t_ops *ops_stats)
+void	ss(t_stack *a_stack, t_stack *b_stack, t_ops *ops)
 {
 	int		tmp_va;
 	size_t	tmp_in;
@@ -67,7 +67,7 @@ void	ss(t_stack *a_stack, t_stack *b_stack, t_ops *ops_stats)
 	b_stack -> top -> index = b_stack -> top -> next -> index;
 	b_stack -> top -> next -> value = tmp_va;
 	b_stack -> top -> next -> index = tmp_in;
-	ops_stats -> ss++;
-	ops_stats -> total++;
+	ops -> ss++;
+	ops -> total++;
 	ft_printf("ss\n");
 }

@@ -6,7 +6,7 @@
 /*   By: ttakemur <ttakemur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 19:07:18 by ttakemur          #+#    #+#             */
-/*   Updated: 2026/05/17 14:46:30 by ttakemur         ###   ########.fr       */
+/*   Updated: 2026/05/17 16:18:21 by ttakemur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,20 @@ int	main(int argc, char **argv)
 	parse_argv(argc, argv, a_stack, config);
 	index_stack(a_stack);
 	set_disorder(config);
-	sort(a_stack, b_stack, config);
+	sort(a_stack, b_stack, config, ops);
 	if (config->bench)
 		display_bench(ops, config);
 	return (0);
 }
 
-static void	sort(t_stack *a_stack, t_stack *b_stack, t_config *config)
+static void	sort(t_stack *a_stack, t_stack *b_stack, t_config *config, t_ops *ops)
 {
 	if (config->sort_type == SIMPLE)
-		simple_sort(a_stack, b_stack);
+		simple_sort(a_stack, b_stack, ops);
 	else if (config->sort_type == MEDIUM)
-		medium_sort(a_stack, b_stack);
+		medium_sort(a_stack, b_stack, ops);
 	else if (config->sort_type == COMPLEX)
-		complex_sort(a_stack, b_stack);
+		complex_sort(a_stack, b_stack, ops);
 	else
 	{
 		if (config->disorder < 0.2)
