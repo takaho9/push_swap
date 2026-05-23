@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakemur <ttakemur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: wezhou <wezhou@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 18:39:10 by wezhou            #+#    #+#             */
-/*   Updated: 2026/05/17 19:20:08 by ttakemur         ###   ########.fr       */
+/*   Updated: 2026/05/23 20:01:58 by wezhou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,4 +113,7 @@ t_stack	*init_stack(void);
 void	pa_back(t_stack *a_stack, t_ops *ops, t_node *node);
 void	pb_back(t_stack *b_stack, t_ops *ops, t_node *node);
 double	compute_disorder(t_stack *a_stack, t_node *node_i, t_node *node_j, size_t mistake, size_t total_pairs);
+size_t	ceil_sqrt(size_t n);
+size_t	ceil(size_t	dividend, size_t divisor);
+
 #endif

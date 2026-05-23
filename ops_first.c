@@ -6,7 +6,7 @@
 /*   By: wezhou <wezhou@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 16:08:21 by wezhou            #+#    #+#             */
-/*   Updated: 2026/05/17 18:37:00 by wezhou           ###   ########.fr       */
+/*   Updated: 2026/05/19 11:01:00 by wezhou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,7 @@ void	pa_back(t_stack *a_stack, t_ops *ops, t_node *node)
 		a_stack -> top = node;
 	}
 	else
-	{
-		bottom = a_stack -> top -> prev;
-		bottom -> next = node;
-		a_stack -> top -> next -> prev = node;
-		node -> prev =bottom;
-		node -> next =  a_stack -> top -> next -> prev;
-		a_stack -> top = node;
-	}
+		a_stack -> top = node_add_prev(a_stack -> top, node);
 	a_stack -> size++;
 	ops -> pa++;
 	ops -> total++;
@@ -90,14 +83,7 @@ void	pb_back(t_stack *b_stack, t_ops *ops, t_node *node)
 		b_stack -> top = node;
 	}
 	else
-	{
-		bottom = b_stack -> top -> prev;
-		bottom -> next = node;
-		b_stack -> top -> next -> prev = node;
-		node -> prev =bottom;
-		node -> next =  b_stack -> top -> next -> prev;
-		b_stack -> top = node;
-	}
+		b_stack -> top = node_add_prev(b_stack -> top, node);
 	b_stack -> size++;
 	ops -> pb++;
 	ops -> total++;
