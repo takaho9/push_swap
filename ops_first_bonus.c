@@ -6,13 +6,13 @@
 /*   By: wezhou <wezhou@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 20:41:41 by wezhou            #+#    #+#             */
-/*   Updated: 2026/05/25 17:54:58 by wezhou           ###   ########.fr       */
+/*   Updated: 2026/05/25 22:01:37 by wezhou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	pa_bonus(t_stack *a_stack, t_stack *b_stack, t_ops *ops)
+void	pa_bonus(t_stack *a_stack, t_stack *b_stack)
 {
 	t_node	*bottom;
 	t_node	*node;
@@ -30,10 +30,10 @@ void	pa_bonus(t_stack *a_stack, t_stack *b_stack, t_ops *ops)
 		b_stack -> top -> prev = bottom;
 	}
 	b_stack -> size--;
-	pa_back_bonus(a_stack, ops, node);
+	pa_back_bonus(a_stack, node);
 }
 
-static void	pa_back_bonus(t_stack *a_stack, t_ops *ops, t_node *node)
+static void	pa_back_bonus(t_stack *a_stack,t_node *node)
 {
 	t_node	*bottom;
 
@@ -46,11 +46,9 @@ static void	pa_back_bonus(t_stack *a_stack, t_ops *ops, t_node *node)
 	else
 		a_stack -> top = node_add_prev(a_stack -> top, node);
 	a_stack -> size++;
-	ops -> pa++;
-	ops -> total++;
 }
 
-void	pb_bonus(t_stack *a_stack, t_stack *b_stack, t_ops *ops)
+void	pb_bonus(t_stack *a_stack, t_stack *b_stack)
 {
 	t_node	*bottom;
 	t_node	*node;
@@ -68,10 +66,10 @@ void	pb_bonus(t_stack *a_stack, t_stack *b_stack, t_ops *ops)
 		a_stack -> top -> prev = bottom;
 	}
 	a_stack -> size--;
-	pb_back_bonus(b_stack, ops, node);
+	pb_back_bonus(b_stack, node);
 }
 
-static void	pb_back_bonus(t_stack *b_stack, t_ops *ops, t_node *node)
+static void	pb_back_bonus(t_stack *b_stack,t_node *node)
 {
 	t_node	*bottom;
 
@@ -84,6 +82,4 @@ static void	pb_back_bonus(t_stack *b_stack, t_ops *ops, t_node *node)
 	else
 		b_stack -> top = node_add_prev(b_stack -> top, node);
 	b_stack -> size++;
-	ops -> pb++;
-	ops -> total++;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakemur <ttakemur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: wezhou <wezhou@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 19:07:18 by ttakemur          #+#    #+#             */
-/*   Updated: 2026/05/17 19:19:26 by ttakemur         ###   ########.fr       */
+/*   Updated: 2026/05/25 21:53:48 by wezhou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	main(int argc, char **argv)
 	t_config	*config;
 	t_ops		*ops;
 
+	if (argc < 2)
+		return (0);
 	b_stack = init_stack();
 	a_stack = init_stack();
     ops = init_ops();
