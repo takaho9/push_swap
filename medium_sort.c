@@ -6,7 +6,7 @@
 /*   By: wezhou <wezhou@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 20:18:06 by ttakemur          #+#    #+#             */
-/*   Updated: 2026/05/23 20:01:43 by wezhou           ###   ########.fr       */
+/*   Updated: 2026/05/25 18:02:35 by wezhou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,10 @@ static void	chunk_pb(t_stack *a_stack, t_stack *b_stack, t_ops *ops)
 	while (i < chunk_count && a_stack -> size > 0)
 	{
 		j = 0;
-		while(j < chunk_size && a_stack -> size > 0)
+		while (j < chunk_size && a_stack -> size > 0)
 		{
-			if (i * chunk_size <= a_stack -> top -> index && a_stack -> top -> index < (i + 1) * chunk_size)
+			if (i * chunk_size <= a_stack -> top -> index
+				&& a_stack -> top -> index < (i + 1) * chunk_size)
 			{
 				pb(a_stack, b_stack, ops);
 				j++;
@@ -49,7 +50,7 @@ static size_t	compute_pos(t_stack *b_stack, size_t cur_max)
 	while (pos < b_stack -> size)
 	{
 		if (cur -> index == cur_max)
-			break;
+			break ;
 		pos++;
 		cur = cur -> next;
 	}
@@ -58,7 +59,6 @@ static size_t	compute_pos(t_stack *b_stack, size_t cur_max)
 
 static	void	chunk_pa(t_stack *a_stack, t_stack *b_stack, t_ops *ops)
 {
-	size_t	pos;
 	size_t	cur_max;
 
 	cur_max = b_stack -> size - 1;
@@ -67,22 +67,27 @@ static	void	chunk_pa(t_stack *a_stack, t_stack *b_stack, t_ops *ops)
 		if (b_stack -> top -> index == cur_max)
 			pa(a_stack, b_stack, ops);
 		else
-		{
-			pos = compute_pos(b_stack, cur_max);
-			if (pos > b_stack -> size - pos)
-			{
-				while (b_stack -> top -> index != cur_max)
-					rb(b_stack, ops);
-				pa(a_stack, b_stack, ops);
-			}
-			else
-			{
-				while (b_stack -> top -> index != cur_max)
-					rrb(b_stack, ops);
-				pa(a_stack, b_stack, ops);
-			}
-		}
+			chunk_pa_back(a_stack, b_stack, ops, cur_max);
 		cur_max--;
+	}
+}
+
+static void	chunk_pa_back(t_stack *a, t_stack *b, t_ops *ops, size_t cur_max)
+{
+	size_t	pos;
+
+	pos = compute_pos(b, cur_max);
+	if (pos > b -> size - pos)
+	{
+		while (b -> top -> index != cur_max)
+			rb(b, ops);
+		pa(a, b, ops);
+	}
+	else
+	{
+		while (b -> top -> index != cur_max)
+			rrb(b, ops);
+		pa(a, b, ops);
 	}
 }
 

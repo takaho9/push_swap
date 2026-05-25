@@ -6,7 +6,7 @@
 /*   By: wezhou <wezhou@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 16:08:21 by wezhou            #+#    #+#             */
-/*   Updated: 2026/05/19 11:01:00 by wezhou           ###   ########.fr       */
+/*   Updated: 2026/05/23 20:41:56 by wezhou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	pa_back(t_stack *a_stack, t_ops *ops, t_node *node)
 	a_stack -> size++;
 	ops -> pa++;
 	ops -> total++;
-	// ft_printf("pa\n");
+	ft_printf("pa\n");
 }
 
 void	pb(t_stack *a_stack, t_stack *b_stack, t_ops *ops)
@@ -87,7 +87,7 @@ void	pb_back(t_stack *b_stack, t_ops *ops, t_node *node)
 	b_stack -> size++;
 	ops -> pb++;
 	ops -> total++;
-	// ft_printf("pa\n");
+	ft_printf("pa\n");
 }
 
 // #include <stdio.h>
