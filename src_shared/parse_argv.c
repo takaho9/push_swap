@@ -69,6 +69,7 @@ static int	set_stack(t_stack *stack, char *str)
 		stack->top = new;
 	else
 		node_add_prev(stack->top, new);
+	stack->size++;
 	return (0);
 }
 

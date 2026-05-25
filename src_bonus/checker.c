@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "get_next_line.h"
 
 static int	ft_strcmp(const char *s1, const char *s2)
 {
@@ -39,15 +40,15 @@ static int	execute_ops(t_stack *a_stack, t_stack *b_stack, char *line)
 	else if (!ft_strcmp(line, "rr\n"))
 		rr_bonus(a_stack, b_stack);
 	else if (!ft_strcmp(line, "rra\n"))
-		rra_bonus(b_stack);
+		rra_bonus(a_stack);
 	else if (!ft_strcmp(line, "rrb\n"))
 		rrb_bonus(b_stack);
 	else if (!ft_strcmp(line, "rrr\n"))
-		rrr_bonus(b_stack);
+		rrr_bonus(a_stack, b_stack);
 	else if (!ft_strcmp(line, "pa\n"))
-		pa_bonus(b_stack);
+		pa_bonus(a_stack, b_stack);
 	else if (!ft_strcmp(line, "pb\n"))
-		pb_bonus(b_stack);
+		pb_bonus(a_stack, b_stack);
 	else
 		return (0);
 	return (1);

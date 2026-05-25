@@ -20,7 +20,7 @@ static void	chunk_pb(t_stack *a_stack, t_stack *b_stack, t_ops *ops)
 	size_t	chunk_size;
 
 	chunk_count = ceil_sqrt(a_stack -> size);
-	chunk_size = ceil(a_stack -> size, chunk_count);
+	chunk_size = ft_ceil(a_stack -> size, chunk_count);
 	i = 0;
 	while (i < chunk_count && a_stack -> size > 0)
 	{
@@ -57,21 +57,6 @@ static size_t	compute_pos(t_stack *b_stack, size_t cur_max)
 	return (pos);
 }
 
-static	void	chunk_pa(t_stack *a_stack, t_stack *b_stack, t_ops *ops)
-{
-	size_t	cur_max;
-
-	cur_max = b_stack -> size - 1;
-	while (b_stack -> size > 0)
-	{
-		if (b_stack -> top -> index == cur_max)
-			pa(a_stack, b_stack, ops);
-		else
-			chunk_pa_back(a_stack, b_stack, ops, cur_max);
-		cur_max--;
-	}
-}
-
 static void	chunk_pa_back(t_stack *a, t_stack *b, t_ops *ops, size_t cur_max)
 {
 	size_t	pos;
@@ -88,6 +73,21 @@ static void	chunk_pa_back(t_stack *a, t_stack *b, t_ops *ops, size_t cur_max)
 		while (b -> top -> index != cur_max)
 			rrb(b, ops);
 		pa(a, b, ops);
+	}
+}
+
+static void	chunk_pa(t_stack *a_stack, t_stack *b_stack, t_ops *ops)
+{
+	size_t	cur_max;
+
+	cur_max = b_stack -> size - 1;
+	while (b_stack -> size > 0)
+	{
+		if (b_stack -> top -> index == cur_max)
+			pa(a_stack, b_stack, ops);
+		else
+			chunk_pa_back(a_stack, b_stack, ops, cur_max);
+		cur_max--;
 	}
 }
 

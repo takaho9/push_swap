@@ -14,10 +14,9 @@
 
 void	index_stack(t_stack *stack)
 {
-	size_t i;
-	size_t index;
-	t_node *start;
-	t_node *cur;
+	size_t	index;
+	t_node	*start;
+	t_node	*cur;
 
 	start = stack->top;
 	while (1)

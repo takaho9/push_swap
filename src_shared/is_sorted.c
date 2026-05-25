@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   math.c                                             :+:      :+:    :+:   */
+/*   is_sorted.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wezhou <wezhou@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/23 19:59:54 by wezhou            #+#    #+#             */
-/*   Updated: 2026/05/23 20:01:22 by wezhou           ###   ########.fr       */
+/*   Created: 2026/05/25 17:44:05 by wezhou            #+#    #+#             */
+/*   Updated: 2026/05/25 17:52:12 by wezhou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-size_t	ceil_sqrt(size_t n)
+int	is_sorted(t_stack *a_stack)
 {
+	t_node	*cur;
 	size_t	i;
 
+	if (!a_stack)
+		return (0);
+	if (a_stack -> size < 2)
+		return (1);
+	cur = a_stack -> top;
 	i = 0;
-	while (i * i < n)
+	while (i < a_stack -> size - 1)
+	{
+		if (cur -> index > cur -> next -> index)
+			return (0);
+		cur = cur -> next;
 		i++;
-	return (i);
-}
-
-size_t	ceil(size_t	dividend, size_t divisor)
-{
-	size_t	i;
-
-	i = 0;
-	if (dividend % divisor > 0)
-		return(dividend / divisor + 1);
-	return (dividend / divisor);
+	}
+	return (1);
 }

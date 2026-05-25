@@ -35,8 +35,6 @@ void	pa(t_stack *a_stack, t_stack *b_stack, t_ops *ops)
 
 void	pa_back(t_stack *a_stack, t_ops *ops, t_node *node)
 {
-	t_node	*bottom;
-
 	if (!a_stack || a_stack -> size == 0)
 	{
 		node -> prev = node;
@@ -74,8 +72,6 @@ void	pb(t_stack *a_stack, t_stack *b_stack, t_ops *ops)
 
 void	pb_back(t_stack *b_stack, t_ops *ops, t_node *node)
 {
-	t_node	*bottom;
-
 	if (!b_stack || b_stack -> size == 0)
 	{
 		node -> prev = node;
@@ -87,7 +83,7 @@ void	pb_back(t_stack *b_stack, t_ops *ops, t_node *node)
 	b_stack -> size++;
 	ops -> pb++;
 	ops -> total++;
-	ft_printf("pa\n");
+	ft_printf("pb\n");
 }
 
 // #include <stdio.h>

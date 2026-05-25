@@ -13,10 +13,8 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "libft/libft.h"
+# include "libft.h"
 # include <stdlib.h>
-
-# define ERROR (-1)
 
 typedef enum e_bool
 {
@@ -115,7 +113,7 @@ void				display_bench(t_ops *ops, t_config *config);
 
 //math.c for medium sort
 size_t				ceil_sqrt(size_t n);
-size_t				ceil(size_t	dividend, size_t divisor);
+size_t				ft_ceil(size_t dividend, size_t divisor);
 
 //bonus --checker
 void				sa_bonus(t_stack *a_stack);

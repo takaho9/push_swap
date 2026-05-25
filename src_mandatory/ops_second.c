@@ -19,9 +19,8 @@ void	ra(t_stack *a_stack, t_ops *ops)
 	a_stack -> top = a_stack -> top -> next;
 	ops -> ra++;
 	ops -> total++;
-	// ft_printf("ra\n");
+	ft_printf("ra\n");
 }
-
 
 void	rb(t_stack *b_stack, t_ops *ops)
 {
@@ -30,7 +29,7 @@ void	rb(t_stack *b_stack, t_ops *ops)
 	b_stack -> top = b_stack -> top -> next;
 	ops -> rb++;
 	ops -> total++;
-	// ft_printf("ra\n");
+	ft_printf("rb\n");
 }
 
 void	rr(t_stack *a_stack, t_stack *b_stack, t_ops *ops)
@@ -41,7 +40,7 @@ void	rr(t_stack *a_stack, t_stack *b_stack, t_ops *ops)
 	b_stack -> top = b_stack -> top -> next;
 	ops -> rr++;
 	ops -> total++;
-	// ft_printf("rr\n");
+	ft_printf("rr\n");
 }
 
 void	rra(t_stack *a_stack, t_ops *ops)
@@ -51,7 +50,7 @@ void	rra(t_stack *a_stack, t_ops *ops)
 	a_stack -> top = a_stack -> top -> prev;
 	ops -> rra++;
 	ops -> total++;
-	// ft_printf("rra\n");
+	ft_printf("rra\n");
 }
 
 void	rrb(t_stack *b_stack, t_ops *ops)
@@ -61,7 +60,7 @@ void	rrb(t_stack *b_stack, t_ops *ops)
 	b_stack -> top = b_stack -> top -> prev;
 	ops -> rrb++;
 	ops -> total++;
-	// ft_printf("rrb\n");
+	ft_printf("rrb\n");
 }
 
 void	rrr(t_stack *a_stack, t_stack *b_stack, t_ops *ops)
@@ -72,7 +71,7 @@ void	rrr(t_stack *a_stack, t_stack *b_stack, t_ops *ops)
 	b_stack -> top = b_stack -> top -> prev;
 	ops -> rrr++;
 	ops -> total++;
-	// ft_printf("rrr\n");
+	ft_printf("rrr\n");
 }
 
 // #include <stdio.h>
