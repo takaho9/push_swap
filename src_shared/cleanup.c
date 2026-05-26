@@ -1,53 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   complex_sort.c                                     :+:      :+:    :+:   */
+/*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttakemur <ttakemur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/16 20:18:18 by ttakemur          #+#    #+#             */
+/*   Created: 2026/05/25 23:30:00 by ttakemur          #+#    #+#             */
 /*   Updated: 2026/05/25 23:30:00 by ttakemur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static size_t	max_bit(size_t max_index)
+void	free_stack(t_stack *stack)
 {
-	size_t	bits;
+	t_node	*cur;
+	t_node	*next;
+	size_t	i;
 
-	bits = 0;
-	while (max_index > 0)
+	if (!stack)
+		return ;
+	cur = stack->top;
+	i = 0;
+	while (i < stack->size)
 	{
-		bits++;
-		max_index >>= 1;
+		next = cur->next;
+		free(cur);
+		cur = next;
+		i++;
 	}
-	return (bits);
+	free(stack);
 }
 
-void	complex_sort(t_stack *a_stack, t_stack *b_stack, t_ops *ops)
+void	cleanup_all(t_stack *a_stack, t_stack *b_stack, t_config *config,
+		t_ops *ops)
 {
-	size_t	bits;
-	size_t	bit;
-	size_t	loop;
+	free_stack(a_stack);
+	free_stack(b_stack);
+	free(config);
+	free(ops);
+}
 
-	if (!a_stack || a_stack->size < 2)
-		return ;
-	bits = max_bit(a_stack->size - 1);
-	bit = 0;
-	while (bit < bits)
-	{
-		loop = a_stack->size;
-		while (loop--)
-		{
-			if (!(a_stack->top->index & (1UL << bit)))
-				pb(a_stack, b_stack, ops);
-			else
-				ra(a_stack, ops);
-		}
-		loop = b_stack->size;
-		while (loop--)
-			pa(a_stack, b_stack, ops);
-		bit++;
-	}
+void	error_exit(t_stack *a_stack, t_stack *b_stack, t_config *config,
+		t_ops *ops)
+{
+	ft_putstr_fd("Error\n", 2);
+	cleanup_all(a_stack, b_stack, config, ops);
+	exit(1);
 }

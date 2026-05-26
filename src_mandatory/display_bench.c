@@ -6,22 +6,22 @@
 /*   By: ttakemur <ttakemur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 22:00:00 by ttakemur          #+#    #+#             */
-/*   Updated: 2026/05/16 22:00:00 by ttakemur         ###   ########.fr       */
+/*   Updated: 2026/05/25 23:30:00 by ttakemur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	put_disorder(float disorder)
+static void	put_disorder(double disorder)
 {
 	int	total;
 	int	whole;
 	int	frac;
 
-	total = (int)(disorder * 10000.0f + 0.5f);
+	total = (int)(disorder * 10000.0 + 0.5);
 	whole = total / 100;
 	frac = total % 100;
-	ft_putstr_fd("[bench] disorder:  ", 2);
+	ft_putstr_fd("[bench] disorder: ", 2);
 	ft_putnbr_fd(whole, 2);
 	ft_putstr_fd(".", 2);
 	if (frac < 10)
@@ -30,49 +30,55 @@ static void	put_disorder(float disorder)
 	ft_putstr_fd("%\n", 2);
 }
 
-static void	put_strategy(t_sort_type type)
+static void	put_strategy(t_config *config)
 {
-	ft_putstr_fd("[bench] strategy:  ", 2);
-	if (type == SIMPLE)
-		ft_putstr_fd("Simple / O(n^2)\n", 2);
-	else if (type == MEDIUM)
-		ft_putstr_fd("Medium / O(n log n)\n", 2);
-	else if (type == COMPLEX)
-		ft_putstr_fd("Complex / O(n log n)\n", 2);
-	else if (type == ADAPTIVE)
-		ft_putstr_fd("Adaptive / O(n\xe2\x88\x9an)\n", 2);
+	ft_putstr_fd("[bench] strategy: ", 2);
+	if (config->sort_type == SIMPLE)
+		ft_putstr_fd("Simple / ", 2);
+	else if (config->sort_type == MEDIUM)
+		ft_putstr_fd("Medium / ", 2);
+	else if (config->sort_type == COMPLEX)
+		ft_putstr_fd("Complex / ", 2);
 	else
-		ft_putstr_fd("Not specified\n", 2);
+		ft_putstr_fd("Adaptive / ", 2);
+	if (config->executed == SIMPLE)
+		ft_putstr_fd("O(n^2)\n", 2);
+	else if (config->executed == MEDIUM)
+		ft_putstr_fd("O(n\xe2\x88\x9an)\n", 2);
+	else if (config->executed == COMPLEX)
+		ft_putstr_fd("O(n log n)\n", 2);
+	else
+		ft_putstr_fd("O(?)\n", 2);
 }
 
 static void	put_ops_a(t_ops *ops)
 {
-	ft_putstr_fd("[bench] sa:  ", 2);
+	ft_putstr_fd("[bench] sa: ", 2);
 	ft_putnbr_fd(ops->sa, 2);
-	ft_putstr_fd("  sb:  ", 2);
+	ft_putstr_fd(" sb: ", 2);
 	ft_putnbr_fd(ops->sb, 2);
-	ft_putstr_fd("  ss:  ", 2);
+	ft_putstr_fd(" ss: ", 2);
 	ft_putnbr_fd(ops->ss, 2);
-	ft_putstr_fd("  pa:  ", 2);
+	ft_putstr_fd(" pa: ", 2);
 	ft_putnbr_fd(ops->pa, 2);
-	ft_putstr_fd("  pb:  ", 2);
+	ft_putstr_fd(" pb: ", 2);
 	ft_putnbr_fd(ops->pb, 2);
 	ft_putstr_fd("\n", 2);
 }
 
 static void	put_ops_b(t_ops *ops)
 {
-	ft_putstr_fd("[bench] ra:  ", 2);
+	ft_putstr_fd("[bench] ra: ", 2);
 	ft_putnbr_fd(ops->ra, 2);
-	ft_putstr_fd("  rb:  ", 2);
+	ft_putstr_fd(" rb: ", 2);
 	ft_putnbr_fd(ops->rb, 2);
-	ft_putstr_fd("  rr:  ", 2);
+	ft_putstr_fd(" rr: ", 2);
 	ft_putnbr_fd(ops->rr, 2);
-	ft_putstr_fd("  rra:  ", 2);
+	ft_putstr_fd(" rra: ", 2);
 	ft_putnbr_fd(ops->rra, 2);
-	ft_putstr_fd("  rrb:  ", 2);
+	ft_putstr_fd(" rrb: ", 2);
 	ft_putnbr_fd(ops->rrb, 2);
-	ft_putstr_fd("  rrr:  ", 2);
+	ft_putstr_fd(" rrr: ", 2);
 	ft_putnbr_fd(ops->rrr, 2);
 	ft_putstr_fd("\n", 2);
 }
@@ -80,7 +86,7 @@ static void	put_ops_b(t_ops *ops)
 void	display_bench(t_ops *ops, t_config *config)
 {
 	put_disorder(config->disorder);
-	put_strategy(config->sort_type);
+	put_strategy(config);
 	ft_putstr_fd("[bench] total_ops: ", 2);
 	ft_putnbr_fd(ops->total, 2);
 	ft_putstr_fd("\n", 2);

@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wezhou <wezhou@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: ttakemur <ttakemur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 14:44:47 by wezhou            #+#    #+#             */
-/*   Updated: 2026/05/08 21:46:04 by wezhou           ###   ########.fr       */
+/*   Updated: 2026/05/27 02:15:37 by ttakemur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include "push_swap.h"
 
 char	*extract_line(char **stash)
 {
@@ -44,7 +45,7 @@ int	check_reads(ssize_t bytes_read, char *buffer, char **stash)
 		*stash = NULL;
 		return (0);
 	}
-	return (1);
+	return (ERROR);
 }
 
 char	*get_stash(char **stash, ssize_t bytes_read)
@@ -74,12 +75,32 @@ char	*get_stash(char **stash, ssize_t bytes_read)
 	return (NULL);
 }
 
+static ssize_t	fill_stash(int fd, char *buffer, char **stash)
+{
+	ssize_t	bytes_read;
+	char	*tmp;
+
+	bytes_read = 1;
+	while (bytes_read > 0)
+	{
+		bytes_read = read(fd, buffer, BUFFER_SIZE);
+		if (check_reads(bytes_read, buffer, stash) == ERROR)
+			return (ERROR);
+		buffer[bytes_read] = '\0';
+		tmp = *stash;
+		*stash = ft_strjoin(*stash, buffer);
+		free(tmp);
+		if (to_find_endl(buffer) >= 0)
+			break ;
+	}
+	return (bytes_read);
+}
+
 char	*get_next_line(int fd)
 {
-	char			*buffer;
-	char			*tmp;
-	static char		*stash;
-	ssize_t			bytes_read;
+	char		*buffer;
+	static char	*stash;
+	ssize_t		bytes_read;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
@@ -88,19 +109,9 @@ char	*get_next_line(int fd)
 	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (NULL);
-	bytes_read = 1;
-	while (bytes_read > 0)
-	{
-		bytes_read = read(fd, buffer, BUFFER_SIZE);
-		if (!check_reads(bytes_read, buffer, &stash))
-			return (NULL);
-		buffer[bytes_read] = '\0';
-		tmp = stash;
-		stash = ft_strjoin(stash, buffer);
-		free(tmp);
-		if (to_find_endl(buffer) >= 0)
-			break;
-	}
+	bytes_read = fill_stash(fd, buffer, &stash);
 	free(buffer);
+	if (bytes_read == ERROR)
+		return (NULL);
 	return (get_stash(&stash, bytes_read));
 }

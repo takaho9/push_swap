@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wezhou <wezhou@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: ttakemur <ttakemur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 20:22:09 by wezhou            #+#    #+#             */
-/*   Updated: 2026/05/25 22:09:20 by wezhou           ###   ########.fr       */
+/*   Updated: 2026/05/27 00:55:54 by ttakemur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,29 +50,44 @@ static int	execute_ops(t_stack *a_stack, t_stack *b_stack, char *line)
 	else if (!ft_strcmp(line, "pb\n"))
 		pb_bonus(a_stack, b_stack);
 	else
-		return (0);
-	return (1);
+		return (ERROR);
+	return (0);
 }
 
 static int	read_and_execute_ops(t_stack *a_stack, t_stack *b_stack)
 {
 	char	*line;
+	int		ret;
 
+	ret = 0;
 	line = get_next_line(0);
 	while (line)
 	{
-		if (!execute_ops(a_stack, b_stack, line))
-		{
-			ft_printf("Error\n");
-			return (0);
-		}
+		if (execute_ops(a_stack, b_stack, line) == ERROR)
+			ret = ERROR;
+		free(line);
+		if (ret == ERROR)
+			break ;
+		line = get_next_line(0);
+	}
+	while (line)
+	{
 		free(line);
 		line = get_next_line(0);
 	}
-	return (1);
+	return (0);
 }
 
-int	main(int argc, char* argv[])
+static void	finish(t_stack *a_stack, t_stack *b_stack, t_config *config)
+{
+	if (is_sorted(a_stack) && b_stack->size == 0)
+		ft_putstr_fd("OK\n", 1);
+	else
+		ft_putstr_fd("KO\n", 1);
+	cleanup_all(a_stack, b_stack, config, NULL);
+}
+
+int	main(int argc, char **argv)
 {
 	t_stack		*a_stack;
 	t_stack		*b_stack;
@@ -83,12 +98,13 @@ int	main(int argc, char* argv[])
 	a_stack = init_stack();
 	b_stack = init_stack();
 	config = init_config();
+	if (!a_stack || !b_stack || !config)
+		error_exit(a_stack, b_stack, config, NULL);
 	if (parse_argv(argc, argv, a_stack, config) == ERROR)
-		ft_printf("Error\n");
-	if (!read_and_execute_ops(a_stack, b_stack))
-		return (0);
-	if (is_sorted(a_stack) && b_stack -> size == 0)
-		ft_printf("OK\n");
-	else
-		ft_printf("KO\n");
+		error_exit(a_stack, b_stack, config, NULL);
+	index_stack(a_stack);
+	if (read_and_execute_ops(a_stack, b_stack) == ERROR)
+		error_exit(a_stack, b_stack, config, NULL);
+	finish(a_stack, b_stack, config);
+	return (0);
 }

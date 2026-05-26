@@ -6,7 +6,7 @@
 /*   By: ttakemur <ttakemur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 18:16:01 by ttakemur          #+#    #+#             */
-/*   Updated: 2026/05/16 19:18:55 by ttakemur         ###   ########.fr       */
+/*   Updated: 2026/05/25 23:30:00 by ttakemur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,20 @@ void	index_stack(t_stack *stack)
 	t_node	*start;
 	t_node	*cur;
 
+	if (!stack || !stack->top)
+		return ;
 	start = stack->top;
 	while (1)
 	{
-		cur = start;
+		cur = start->next;
 		index = 0;
-		while (1)
+		while (cur != start)
 		{
-			if (start->value > cur->next->value)
+			if (start->value > cur->value)
 				index++;
 			cur = cur->next;
-			if (cur == start)
-				break ;
 		}
 		start->index = index;
-
 		start = start->next;
 		if (start == stack->top)
 			break ;

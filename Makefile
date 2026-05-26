@@ -15,9 +15,11 @@ S_DIR       = src_shared
 INC         = -I $(INC_DIR) -I $(LIBFT_DIR)
 
 COMMON_SRCS = $(S_DIR)/parse_argv.c \
+              $(S_DIR)/parse_int.c \
               $(S_DIR)/index_stack.c \
               $(S_DIR)/node_utils.c \
               $(S_DIR)/config_utils.c \
+              $(S_DIR)/cleanup.c \
               $(S_DIR)/math.c \
               $(S_DIR)/is_sorted.c
 
@@ -29,6 +31,7 @@ SRCS        = $(M_DIR)/push_swap.c \
               $(M_DIR)/display_bench.c \
               $(M_DIR)/ops_first.c \
               $(M_DIR)/ops_second.c \
+              $(M_DIR)/ops_reverse.c \
               $(M_DIR)/ops_third.c \
               $(COMMON_SRCS)
 
@@ -37,6 +40,7 @@ BONUS_SRCS  = $(B_DIR)/checker.c \
               $(B_DIR)/get_next_line_utils.c \
               $(B_DIR)/ops_first_bonus.c \
               $(B_DIR)/ops_second_bonus.c \
+              $(B_DIR)/ops_reverse_bonus.c \
               $(B_DIR)/ops_third_bonus.c \
               $(COMMON_SRCS)
 

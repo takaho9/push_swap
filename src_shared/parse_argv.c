@@ -6,18 +6,11 @@
 /*   By: ttakemur <ttakemur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 14:46:02 by ttakemur          #+#    #+#             */
-/*   Updated: 2026/05/16 19:18:15 by ttakemur         ###   ########.fr       */
+/*   Updated: 2026/05/27 02:38:18 by ttakemur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static t_bool	is_option(char *str)
-{
-	if (str[0] == '-' && str[1] == '-')
-		return (TRUE);
-	return (FALSE);
-}
 
 static int	set_option(t_config *config, char *str)
 {
@@ -44,35 +37,6 @@ static int	set_option(t_config *config, char *str)
 	return (0);
 }
 
-static int	set_stack(t_stack *stack, char *str)
-{
-	int			num;
-	t_node		*new;
-	const char	*p;
-
-	p = str;
-	if (*p == '-' || *p == '+')
-		p++;
-	if (!*p)
-		return (ERROR);
-	while (*p)
-	{
-		if (*p < '0' || *p > '9')
-			return (ERROR);
-		p++;
-	}
-	num = ft_atoi(str);
-	new = node_new(num);
-	if (!new)
-		return (ERROR);
-	if (!stack->top)
-		stack->top = new;
-	else
-		node_add_prev(stack->top, new);
-	stack->size++;
-	return (0);
-}
-
 static int	parse_one_arg(char *arg, t_stack *stack, t_config *config)
 {
 	char	**tokens;
@@ -86,9 +50,9 @@ static int	parse_one_arg(char *arg, t_stack *stack, t_config *config)
 	error = 0;
 	while (tokens[i])
 	{
-		if (error == 0 && is_option(tokens[i]))
+		if (!error && tokens[i][0] == '-' && tokens[i][1] == '-')
 			error = set_option(config, tokens[i]);
-		else if (error == 0)
+		else if (!error)
 			error = set_stack(stack, tokens[i]);
 		free(tokens[i]);
 		i++;
