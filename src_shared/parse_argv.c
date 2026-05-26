@@ -6,7 +6,7 @@
 /*   By: ttakemur <ttakemur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 14:46:02 by ttakemur          #+#    #+#             */
-/*   Updated: 2026/05/27 02:38:18 by ttakemur         ###   ########.fr       */
+/*   Updated: 2026/05/27 03:03:11 by ttakemur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ static int	parse_one_arg(char *arg, t_stack *stack, t_config *config)
 	int		i;
 	int		error;
 
+	if (*arg == '\0')
+		return (ERROR);
 	tokens = ft_split(arg, ' ');
 	if (!tokens)
 		return (ERROR);

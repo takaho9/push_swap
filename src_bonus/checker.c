@@ -6,7 +6,7 @@
 /*   By: ttakemur <ttakemur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 20:22:09 by wezhou            #+#    #+#             */
-/*   Updated: 2026/05/27 00:55:54 by ttakemur         ###   ########.fr       */
+/*   Updated: 2026/05/27 03:18:39 by ttakemur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,19 +63,12 @@ static int	read_and_execute_ops(t_stack *a_stack, t_stack *b_stack)
 	line = get_next_line(0);
 	while (line)
 	{
-		if (execute_ops(a_stack, b_stack, line) == ERROR)
+		if (!ret && execute_ops(a_stack, b_stack, line) == ERROR)
 			ret = ERROR;
 		free(line);
-		if (ret == ERROR)
-			break ;
 		line = get_next_line(0);
 	}
-	while (line)
-	{
-		free(line);
-		line = get_next_line(0);
-	}
-	return (0);
+	return (ret);
 }
 
 static void	finish(t_stack *a_stack, t_stack *b_stack, t_config *config)

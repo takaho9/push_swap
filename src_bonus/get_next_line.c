@@ -6,7 +6,7 @@
 /*   By: ttakemur <ttakemur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 14:44:47 by wezhou            #+#    #+#             */
-/*   Updated: 2026/05/27 02:15:37 by ttakemur         ###   ########.fr       */
+/*   Updated: 2026/05/27 03:25:47 by ttakemur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ int	check_reads(ssize_t bytes_read, char *buffer, char **stash)
 		free(buffer);
 		free(*stash);
 		*stash = NULL;
-		return (0);
+		return (ERROR);
 	}
-	return (ERROR);
+	return (0);
 }
 
 char	*get_stash(char **stash, ssize_t bytes_read)
