@@ -25,6 +25,7 @@ COMMON_SRCS = $(S_DIR)/parse_argv.c \
 
 SRCS        = $(M_DIR)/push_swap.c \
               $(M_DIR)/set_disorder.c \
+			  $(M_DIR)/special_sort.c \
               $(M_DIR)/simple_sort.c \
               $(M_DIR)/medium_sort.c \
               $(M_DIR)/complex_sort.c \

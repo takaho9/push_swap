@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   medium_sort.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakemur <ttakemur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: wezhou <wezhou@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 20:18:06 by ttakemur          #+#    #+#             */
-/*   Updated: 2026/05/25 23:30:00 by ttakemur         ###   ########.fr       */
+/*   Updated: 2026/05/27 14:52:53 by wezhou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,11 @@ void	medium_sort(t_stack *a_stack, t_stack *b_stack, t_ops *ops)
 {
 	if (!a_stack || a_stack->size < 2)
 		return ;
+	if (a_stack -> size <= 5)
+	{
+		less_than_or_e_5(a_stack, b_stack, ops);
+		return ;
+	}
 	chunk_pb(a_stack, b_stack, ops);
 	chunk_pa(a_stack, b_stack, ops);
 }

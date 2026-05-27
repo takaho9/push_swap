@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakemur <ttakemur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: wezhou <wezhou@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 18:39:10 by wezhou            #+#    #+#             */
-/*   Updated: 2026/05/27 04:10:50 by ttakemur         ###   ########.fr       */
+/*   Updated: 2026/05/27 14:48:42 by wezhou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ int			is_sorted(t_stack *a_stack);
 double		set_disorder(t_stack *a_stack);
 
 /* sorts */
+void		less_than_or_e_5(t_stack *a_stack, t_stack *b_stack, t_ops *ops);
 void		simple_sort(t_stack *a_stack, t_stack *b_stack, t_ops *ops);
 void		medium_sort(t_stack *a_stack, t_stack *b_stack, t_ops *ops);
 void		complex_sort(t_stack *a_stack, t_stack *b_stack, t_ops *ops);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simple_sort.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakemur <ttakemur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: wezhou <wezhou@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 19:22:36 by ttakemur          #+#    #+#             */
-/*   Updated: 2026/05/27 05:28:22 by ttakemur         ###   ########.fr       */
+/*   Updated: 2026/05/27 14:49:42 by wezhou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,11 @@ void	simple_sort(t_stack *a_stack, t_stack *b_stack, t_ops *ops)
 {
 	if (!a_stack || a_stack->size < 2)
 		return ;
+	if (a_stack -> size <= 5)
+	{
+		less_than_or_e_5(a_stack, b_stack, ops);
+		return ;
+	}
 	while (a_stack->size)
 	{
 		rotate_b_to(b_stack, ops, find_insert_pos(a_stack->top->index,
