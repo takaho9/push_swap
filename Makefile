@@ -43,6 +43,7 @@ BONUS_SRCS  = $(B_DIR)/checker.c \
               $(B_DIR)/ops_second_bonus.c \
               $(B_DIR)/ops_reverse_bonus.c \
               $(B_DIR)/ops_third_bonus.c \
+			  $(B_DIR)/parse_argv_bonus.c \
               $(COMMON_SRCS)
 
 OBJS        = $(SRCS:.c=.o)

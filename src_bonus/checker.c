@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakemur <ttakemur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: wezhou <wezhou@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 20:22:09 by wezhou            #+#    #+#             */
-/*   Updated: 2026/05/27 03:18:39 by ttakemur         ###   ########.fr       */
+/*   Updated: 2026/05/31 17:06:48 by wezhou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	main(int argc, char **argv)
 	config = init_config();
 	if (!a_stack || !b_stack || !config)
 		error_exit(a_stack, b_stack, config, NULL);
-	if (parse_argv(argc, argv, a_stack, config) == ERROR)
+	if (parse_argv_bonus(argc, argv, a_stack) == ERROR)
 		error_exit(a_stack, b_stack, config, NULL);
 	index_stack(a_stack);
 	if (read_and_execute_ops(a_stack, b_stack) == ERROR)

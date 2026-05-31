@@ -6,7 +6,7 @@
 /*   By: wezhou <wezhou@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 18:39:10 by wezhou            #+#    #+#             */
-/*   Updated: 2026/05/27 14:48:42 by wezhou           ###   ########.fr       */
+/*   Updated: 2026/05/31 17:05:46 by wezhou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,5 +129,6 @@ void		rr_bonus(t_stack *a_stack, t_stack *b_stack);
 void		rra_bonus(t_stack *a_stack);
 void		rrb_bonus(t_stack *b_stack);
 void		rrr_bonus(t_stack *a_stack, t_stack *b_stack);
+int			parse_argv_bonus(int argc, char **argv, t_stack *stack);
 
 #endif
