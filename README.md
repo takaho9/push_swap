@@ -61,6 +61,17 @@ make fclean   # バイナリとオブジェクトを全削除
 
 しきい値の根拠: ほぼ整列済み (`d < 0.2`) ではセレクションソート系の単純戦略が定数倍で勝つ。中間域では分割数 √n のチャンクソートが理論上限を満たしつつ実測でも安定。高 disorder ではバイナリラジックス（push_swap 操作モデル上 O(n log n)）が最少操作になる。
 
+### Small inputs — special_sort (n ≤ 5)
+
+`special_sort.c::less_than_or_e_5` 要素数が **5 以下**の場合は、上記 3 戦略（Simple / Medium / Complex）のいずれを選んでも共通でこのハンドコード済みルーチンに委譲する。汎用アルゴリズムは小サイズでオーバーヘッドが大きく操作数も最適にならないため、`n ≤ 5` は専用処理で最小手数に固定する。
+
+- `n = 2`: 逆順なら `sa` のみ
+- `n = 3`: 全 6 パターンを最大 2 操作で整列
+- `n = 4`: 最小要素を `pb` で退避 → 残り 3 を整列 → `pa`
+- `n = 5`: 最小 2 要素を `pb` で退避 → 残り 3 を整列 → `pa` `pa`
+
+これにより `--simple` / `--medium` / `--complex` / `--adaptive` のどの経路でも、小入力の挙動と操作数は一致する。
+
 ### Simple — Insertion sort (O(n²))
 
 `simple_sort.c` `a` の各要素を順に `pb` で `b` に押し込みつつ、`b` を**巡回降順**（一周すると降順の段が連続し、唯一「現 min → 現 max」へ飛ぶ上昇エッジ＝ **wrap 位置**が存在する状態）に保つ。各挿入で `b` を 1 周走査し、a の値が収まる「隙間」（`top->index < a < top->prev->index`）を見つけ、その位置を top に持ってくる `rb` / `rrb` を最短方向で実行してから `pb`。a の値が新最大/新最小のときは隙間が存在せず wrap 位置に挿入する必要があるため、現 max を top に置いてから `pb` する。すべて移動し終えたら `(top->index + 1) % size` で求まる距離だけ rotate して max を top に揃え、`pa` で全要素を戻す。挿入 1 回あたり走査 + 回転で O(n)、合計 O(n²) 操作。
@@ -201,6 +212,6 @@ AI（Claude Code）の利用:
 | login | 担当 |
 |---|---|
 | `ttakemur` | パース、`simple_sort`、`complex_sort`、bench 表示、Makefile、ディレクトリ整備 |
-| `wezhou` | `medium_sort`、checker（bonus）、get_next_line、各 op の実装、エラー設計 |
+| `wezhou` | `medium_sort`、`special_sort`（n ≤ 5）、checker（bonus）、get_next_line、各 op の実装、エラー設計 |
 
 両者がすべてのコードを読み、defense で説明できる状態。
