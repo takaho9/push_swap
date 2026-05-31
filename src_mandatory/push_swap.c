@@ -28,7 +28,6 @@ static t_sort_type	choose_strategy(t_config *config)
 static void	sort(t_stack *a_stack, t_stack *b_stack, t_config *config,
 		t_ops *ops)
 {
-	config->executed = choose_strategy(config);
 	if (config->executed == SIMPLE)
 		simple_sort(a_stack, b_stack, ops);
 	else if (config->executed == MEDIUM)
@@ -64,6 +63,7 @@ int	main(int argc, char **argv)
 		error_exit(a_stack, b_stack, config, ops);
 	index_stack(a_stack);
 	config->disorder = set_disorder(a_stack);
+	config->executed = choose_strategy(config);
 	if (!is_sorted(a_stack))
 		sort(a_stack, b_stack, config, ops);
 	if (config->bench)
